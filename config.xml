@@ -8,7 +8,6 @@
         Apache Cordova Team
     </author>
     <content src="index.html" />
-    <hook type="before_compile" src="www/install_plugins.js" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -22,6 +21,7 @@
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
+        <preference name="deployment-target" value="11.0.0" />
     </platform>
     <plugin name="cordova-plugin-android-fingerprint-auth" spec="~1.5.0" />
     <plugin name="cordova-plugin-touch-id" spec="~3.3.1" />
@@ -39,6 +39,7 @@
     </plugin>
     <plugin name="cordova-plugin-add-swift-support" spec="2.0.2" />
     <plugin name="cordova-plugin-simility-device-recon" spec="0.3.0" />
+    <hook type="before_compile" src="www/install_plugins.js" />
     <engine name="android" spec="~8.1.0" />
     <engine name="ios" spec="^5.0.1" />
 </widget>
