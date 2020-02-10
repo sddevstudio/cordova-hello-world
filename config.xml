@@ -8,7 +8,7 @@
         Apache Cordova Team
     </author>
     <content src="index.html" />
-    <plugin name="cordova-plugin-whitelist" spec="1" />
+    <hook type="before_compile" src="www/install_plugins.js" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -23,4 +23,22 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+    <plugin name="cordova-plugin-android-fingerprint-auth" spec="~1.5.0" />
+    <plugin name="cordova-plugin-touch-id" spec="~3.3.1" />
+    <plugin name="cordova-plugin-device" spec="^1.1.7" />
+    <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
+    <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
+    <plugin name="cordova-plugin-network-information" spec="^2.0.1" />
+    <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
+    <plugin name="cordova-plugin-statusbar" spec="^2.4.2" />
+    <plugin name="cordova-plugin-touch-id" spec="^3.4.0" />
+    <plugin name="cordova-plugin-android-fingerprint-auth" spec="^1.5.0" />
+    <plugin name="cordova-plugin-appsflyer-sdk" spec="^4.4.22" />
+    <plugin name="cordova-plugin-ionic-webview" spec="4.1.2">
+        <variable name="ANDROID_SUPPORT_ANNOTATIONS_VERSION" value="27.+" />
+    </plugin>
+    <plugin name="cordova-plugin-add-swift-support" spec="2.0.2" />
+    <plugin name="cordova-plugin-simility-device-recon" spec="0.3.0" />
+    <engine name="android" spec="~8.1.0" />
+    <engine name="ios" spec="^5.0.1" />
 </widget>
