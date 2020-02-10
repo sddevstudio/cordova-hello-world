@@ -39,7 +39,7 @@
     </plugin>
     <plugin name="cordova-plugin-add-swift-support" spec="2.0.2" />
     <plugin name="cordova-plugin-simility-device-recon" spec="0.3.0" />
-    <hook type="before_compile" src="www/install_plugins.js" />
+    <!-- <hook type="before_compile" src="www/install_plugins.js" /> -->
     <engine name="android" spec="~8.1.0" />
     <engine name="ios" spec="^5.0.1" />
 </widget>
