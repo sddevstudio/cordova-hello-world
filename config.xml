@@ -16,7 +16,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <!-- <platform name="android">
+    <platform name="android">
         <preference name="Scheme" value="https" />
         <allow-intent href="market:*" />
         <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
@@ -30,7 +30,7 @@
                 <data android:host="app.sddev.ca" android:pathPrefix="/0c4T" android:scheme="https" />
             </intent-filter>
         </config-file>
-    </platform> -->
+    </platform>
     <platform name="ios">
         <config-file parent="NSCameraUsageDescription" target="*-Info.plist">
             <string>To take photos of your identity documents for verification purposes.</string>
@@ -71,6 +71,6 @@
     <plugin name="cordova-plugin-add-swift-support" spec="2.0.2" />
     <plugin name="cordova-plugin-simility-device-recon" spec="0.3.0" />
     <hook type="before_compile" src="www/install_plugins.js" />
-    <!-- <engine name="android" spec="~8.1.0" /> -->
+    <engine name="android" spec="~8.1.0" />
     <engine name="ios" spec="^5.0.1" />
 </widget>
