@@ -19,9 +19,9 @@
     <platform name="android">
         <preference name="Scheme" value="https" />
         <allow-intent href="market:*" />
-        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+        <!-- <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
             <application android:usesCleartextTraffic="false" />
-        </edit-config>
+        </edit-config> -->
         <config-file mode="add" parent="/manifest/application/activity" target="AndroidManifest.xml">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
