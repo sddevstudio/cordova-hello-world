@@ -28,7 +28,13 @@ steps:
   displayName: 'Cordova Prepare'
 
 - script: ls -l
-  displayName: 'lists'
+  displayName: 'lists after prepare'
 
 - script: cordova requirements
   displayName: 'Cordova Requirements'
+
+- script: cordova build ios --debug --emulator --verbose
+  displayName: 'Build iOS Emulator'
+
+- script: ls -l
+  displayName: 'lists build ios emu'
