@@ -21,8 +21,14 @@ steps:
     cordova --version
   displayName: 'Cordova Install'
 
+- script: npm install -g ios-deploy
+  displayName: 'ios-deploy'
+
 - script: cordova prepare
   displayName: 'Cordova Prepare'
+
+- script: ls -l
+  displayName: 'lists'
 
 - script: cordova requirements
   displayName: 'Cordova Requirements'
