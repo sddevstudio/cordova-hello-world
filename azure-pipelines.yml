@@ -18,4 +18,11 @@ steps:
 - script: |
     echo try install cordova...
     npm install cordova
-  displayName: 'Cordova Install!?'
+    cordova --version
+  displayName: 'Cordova Install'
+
+- script: cordova prepare
+  displayName: 'Cordova Prepare'
+
+- script: cordova requirements
+  displayName: 'Cordova Requirements'
