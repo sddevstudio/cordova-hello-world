@@ -45,7 +45,12 @@ steps:
       platforms/ios/build/emulator/*.app
       platforms/ios/build/emulator/*.dSYM
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    flattenFolders: true
+
+- script: |
+    pwd
+    ls -l platforms/ios/build/emulator/
+    ls -l $(Build.ArtifactStagingDirectory)
+  displayName: 'wheres da files'
 
 - task: PublishBuildArtifacts@1
   inputs:
