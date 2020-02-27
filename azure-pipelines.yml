@@ -39,6 +39,12 @@ steps:
 - script: ls -l
   displayName: 'lists build ios emu'
 
+- task: CopyFiles@2
+  inputs:
+    Contents: '**/*.app'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    flattenFolders: true
+
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
