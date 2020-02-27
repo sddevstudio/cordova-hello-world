@@ -41,7 +41,9 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    Contents: '**/*.app'
+    Contents: |
+      platforms/ios/build/emulator/*.app
+      platforms/ios/build/emulator/*.dSYM
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     flattenFolders: true
 
