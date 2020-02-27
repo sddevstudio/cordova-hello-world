@@ -38,3 +38,9 @@ steps:
 
 - script: ls -l
   displayName: 'lists build ios emu'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
