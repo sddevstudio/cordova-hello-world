@@ -53,6 +53,8 @@ steps:
 
 - script: |
     pwd
+    echo '$(Build.ArtifactStagingDirectory)'
+    echo 'try copy'
     cp platforms/ios/build/emulator/*.app '$(Build.ArtifactStagingDirectory)/'
     cp platforms/ios/build/emulator/*.d '$(Build.ArtifactStagingDirectory)/'
     ls -l platforms/ios/build/emulator/
