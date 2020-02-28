@@ -49,6 +49,14 @@ steps:
 #       platforms/ios/build/emulator/*.dSYM
 #     targetFolder: '$(Build.ArtifactStagingDirectory)'
 
+- script: |
+    SIMULATOR=$(find ./platforms/ios/build/emulator -name *.app)
+    APP=simulator.zip
+    zip -r "$APP" "$SIMULATOR"
+    ls -lh ./platforms/ios/build/emulator
+    cp ""./platforms/ios/build/emulator/$APP" $(Build.ArtifactStagingDirectory)/
+  displayName: 'zip up app'
+
 - task: CopyFiles@2
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)/platforms/ios/build'
