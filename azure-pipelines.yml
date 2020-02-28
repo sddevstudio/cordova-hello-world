@@ -55,10 +55,10 @@ steps:
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - script: |
-  pwd
-  echo '$(Build.ArtifactStagingDirectory)'
-  ls -l platforms/ios/build/emulator/
-  ls -l '$(Build.ArtifactStagingDirectory)'
+    pwd
+    echo $(Build.ArtifactStagingDirectory)
+    ls -l platforms/ios/build/emulator/
+    ls -l '$(Build.ArtifactStagingDirectory)'
   displayName: 'wheres da files'
 
 - task: PublishBuildArtifacts@1
