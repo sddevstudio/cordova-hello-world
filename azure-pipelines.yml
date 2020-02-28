@@ -51,7 +51,8 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    contents: '**/?(*.app|*.dSYM)'
+    sourceFolder: '$(Build.SourcesDirectory)/platforms/ios/build'
+    contents: '/**.app*/*'
     targetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - script: |
