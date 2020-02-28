@@ -49,9 +49,7 @@ steps:
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)/platforms/ios/build/emulator'
-    Contents: |
-      *.app
-      *.dSYM
+    Contents: /**/?(*.app|*.dSYM)
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - script: |
