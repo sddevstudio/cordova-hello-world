@@ -48,7 +48,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: 'platforms/ios/build/emulator/'
+    SourceFolder: '$(Agent.BuildDirectory)/platforms/ios/build/emulator'
     Contents: |
       *.app
       *.dSYM
@@ -57,7 +57,8 @@ steps:
 - script: |
     pwd
     echo $(Build.ArtifactStagingDirectory)
-    ls -l platforms/ios/build/emulator/
+    echo $(Agent.BuildDirectory)
+    ls -l platforms/ios/build/emulator
     ls -l '$(Build.ArtifactStagingDirectory)'
   displayName: 'wheres da files'
 
