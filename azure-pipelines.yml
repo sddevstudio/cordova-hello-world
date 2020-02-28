@@ -24,6 +24,9 @@ steps:
 - script: npm install -g ios-deploy
   displayName: 'ios-deploy'
 
+- script: gem install cocoapods
+  displayName: 'CocoaPods install'
+
 - script: cordova prepare
   displayName: 'Cordova Prepare'
 
@@ -48,7 +51,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)/platforms/ios/build/emulator'
+    SourceFolder: '$(Build.SourcesDirectory)/platforms/ios/build'
     Contents: /**/?(*.app|*.dSYM)
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
@@ -56,8 +59,8 @@ steps:
     pwd
     echo $(Build.ArtifactStagingDirectory)
     echo $(Build.SourcesDirectory)
-    ls -l platforms/ios/build/emulator
-    ls -l '$(Build.ArtifactStagingDirectory)'
+    ls -lh platforms/ios/build/emulator
+    ls -lh '$(Build.ArtifactStagingDirectory)'
   displayName: 'wheres da files'
 
 - task: PublishBuildArtifacts@1
