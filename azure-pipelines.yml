@@ -42,6 +42,9 @@ steps:
 - script: cordova build ios --debug --emulator --verbose
   displayName: 'Build iOS Emulator'
 
+- script: cordova build ios --device --debug --verbose
+  displayName: "Build iOS - Dev"
+
 - script: ls -l
   displayName: 'lists build ios emu'
 
