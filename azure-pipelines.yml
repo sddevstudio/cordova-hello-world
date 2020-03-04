@@ -54,10 +54,7 @@ steps:
 - script: ls -l
   displayName: 'lists build ios emu'
 
-- task: InstallAppleProvisioningProfile@1
-  inputs:
-    provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: '${test-dev-profile}'
+
 
 
 
