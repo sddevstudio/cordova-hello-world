@@ -9,20 +9,11 @@ trigger:
 pool:
   vmImage: 'macOS-latest'
 
-variables:
-  - group: test-vg
-
 steps:
 - script: |
     echo Hello, world!
     ls -l
   displayName: 'lets get started!'
-
-- script: echo "sf:$TESTDEVPROFILE dp:${test-dev-profile} var:$SUPERSECRET"
-  displayName: "echos"
-
-- script: exit 1
-  displayName: "exit"
 
 - script: |
     echo try install cordova...
@@ -47,6 +38,15 @@ steps:
 
 - script: cordova requirements
   displayName: 'Cordova Requirements'
+
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: '06e802af-f6b2-42fd-919e-200c2b678400'
+
+- task: InstallAppleProvisioningProfile@1
+  inputs:
+    provisioningProfileLocation: 'secureFiles'
+    provProfileSecureFile: 'test-dev.mobileprovision'
 
 - script: cordova build ios --debug --emulator --verbose
   displayName: 'Build iOS Emulator'
