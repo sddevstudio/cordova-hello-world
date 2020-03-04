@@ -9,11 +9,16 @@ trigger:
 pool:
   vmImage: 'macOS-latest'
 
+variables:
+  - group: test-vg
+
 steps:
 - script: |
     echo Hello, world!
     ls -l
   displayName: 'lets get started!'
+
+
 
 - script: echo "sf:${testdevprofile} dp:${test-dev-profile}"
   displayName: "echos"
