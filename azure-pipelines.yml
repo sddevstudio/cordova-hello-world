@@ -53,6 +53,12 @@ steps:
     provisioningProfileLocation: 'secureFiles'
     provProfileSecureFile: 'test-dev.mobileprovision'
 
+- task: Xcode@5
+  inputs:
+    signingOption: 'manual'
+    signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
+    provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
+
 - script: cordova build ios --debug --emulator --verbose
   displayName: 'Build iOS Emulator'
 
