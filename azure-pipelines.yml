@@ -18,7 +18,7 @@ steps:
     ls -l
   displayName: 'lets get started!'
 
-- script: echo "sf:${testdevprofile} dp:${test-dev-profile} var:$SUPERSECRET"
+- script: echo "sf:$TESTDEVPROFILE dp:${test-dev-profile} var:$SUPERSECRET"
   displayName: "echos"
 
 - script: exit 1
