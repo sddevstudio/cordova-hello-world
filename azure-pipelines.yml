@@ -43,6 +43,11 @@ steps:
   inputs:
     secureFile: '06e802af-f6b2-42fd-919e-200c2b678400'
 
+- task: InstallAppleCertificate@2
+  inputs:
+    certSecureFile: 'test-dev.p12'
+    certPwd: '$(appleCert)'
+    keychain: 'temp'
 - task: InstallAppleProvisioningProfile@1
   inputs:
     provisioningProfileLocation: 'secureFiles'
