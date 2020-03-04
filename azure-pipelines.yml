@@ -15,6 +15,12 @@ steps:
     ls -l
   displayName: 'lets get started!'
 
+- script: echo "${testdevprofile} ${test-dev-profile}"
+  displayName: "echos"
+
+- script: exit 1
+  displayName: "exit"
+
 - script: |
     echo try install cordova...
     npm install -g cordova
@@ -48,12 +54,12 @@ steps:
 - script: ls -l
   displayName: 'lists build ios emu'
 
-# - task: CopyFiles@2
-#   inputs:
-#     contents: |
-#       platforms/ios/build/emulator/*.app
-#       platforms/ios/build/emulator/*.dSYM
-#     targetFolder: '$(Build.ArtifactStagingDirectory)'
+- task: InstallAppleProvisioningProfile@1
+  inputs:
+    provisioningProfileLocation: 'secureFiles'
+    provProfileSecureFile: '${test-dev-profile}'
+
+
 
 - script: |
     SIMULATOR=$(find ./platforms/ios/build/emulator -name *.app)
