@@ -35,7 +35,7 @@
         <config-file parent="NSCameraUsageDescription" target="*-Info.plist">
             <string>To take photos of your identity documents for verification purposes.</string>
         </config-file>
-        <config-file parent="com.apple.developer.associated-domains" target="Entitlements-Release*.plist">
+        <!-- <config-file parent="com.apple.developer.associated-domains" target="Entitlements-Release*.plist">
             <array>
                 <string>applinks:app.sddev.ca</string>
             </array>
@@ -44,7 +44,7 @@
             <array>
                 <string>applinks:app.sddev.ca</string>
             </array>
-        </config-file>
+        </config-file> -->
         <preference name="Scheme" value="ionic" />
         <preference name="StatusBarDefaultScrollToTop" value="true" />
         <config-file target="*-Info.plist" parent="NSCameraUsageDescription">
