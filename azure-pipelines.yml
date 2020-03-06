@@ -77,12 +77,14 @@ steps:
 - script: pod repo list
   displayName: "after pod repo"
 
+- script: |
+    ls -l /Users/runner/.cocoapods/repos/cocoapods
+    zip -r "cocoapodrepo.zip" "/Users/runner/.cocoapods/repos/cocoapods"
+    cp "./cocoapodrepo.zip" $(Build.ArtifactStagingDirectory)/
+  displayName: "saverepo pod repo"
 
 - script: ls -l
   displayName: 'lists build ios emu'
-
-
-
 
 
 - script: |
