@@ -51,8 +51,13 @@ steps:
   displayName: 'CocoaPods install'
 
 - script: pod repo list
-  displayName: "Current pod repo"
+  displayName: "before pod repo"
 
+- script: pod repo add cocoapods https://cdn.cocoapods.org/
+  displayName: "add pod repo"
+
+- script: pod repo list
+  displayName: "after pod repo"
 
 - script: cordova prepare
   displayName: 'Cordova Prepare'
@@ -63,11 +68,11 @@ steps:
 - script: cordova requirements
   displayName: 'Cordova Requirements'
 
-- script: cordova build android --device --debug --verbose
-  displayName: 'Build Android - Dev'
+# - script: cordova build android --device --debug --verbose
+#   displayName: 'Build Android - Dev'
 
-# - script: cordova build ios --debug --emulator --verbose
-#   displayName: 'Build iOS Emulator'
+- script: cordova build ios --debug --emulator --verbose
+  displayName: 'Build iOS Emulator'
 
 # - script: cordova build ios --buildConfig test-dev.json --device --debug --verbose
 #   displayName: "Build iOS - Dev"
