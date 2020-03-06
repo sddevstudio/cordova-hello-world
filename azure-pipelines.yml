@@ -53,11 +53,8 @@ steps:
 - script: pod repo list
   displayName: "before pod repo"
 
-- script: pod repo add cocoapods https://cdn.cocoapods.org/
-  displayName: "add pod repo"
-
-- script: pod repo list
-  displayName: "after pod repo"
+# - script: pod repo add cocoapods https://cdn.cocoapods.org/
+#   displayName: "add pod repo"
 
 - script: cordova prepare
   displayName: 'Cordova Prepare'
@@ -76,6 +73,10 @@ steps:
 
 # - script: cordova build ios --buildConfig test-dev.json --device --debug --verbose
 #   displayName: "Build iOS - Dev"
+
+- script: pod repo list
+  displayName: "after pod repo"
+
 
 - script: ls -l
   displayName: 'lists build ios emu'
