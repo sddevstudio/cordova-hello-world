@@ -50,6 +50,10 @@ steps:
     gem which cocoapods
   displayName: 'CocoaPods install'
 
+- script: pod repo list
+  displayName: "Current pod repo"
+
+
 - script: cordova prepare
   displayName: 'Cordova Prepare'
 
@@ -60,7 +64,7 @@ steps:
   displayName: 'Cordova Requirements'
 
 - script: cordova build android --device --debug --verbose
-  displayName: 'Build iOS Emulator'
+  displayName: 'Build Android - Dev'
 
 # - script: cordova build ios --debug --emulator --verbose
 #   displayName: 'Build iOS Emulator'
