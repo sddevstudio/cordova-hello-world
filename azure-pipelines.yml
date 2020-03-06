@@ -59,12 +59,14 @@ steps:
 - script: cordova requirements
   displayName: 'Cordova Requirements'
 
-
-- script: cordova build ios --debug --emulator --verbose
+- script: cordova build android --device --debug --verbose
   displayName: 'Build iOS Emulator'
 
-- script: cordova build ios --buildConfig test-dev.json --device --debug --verbose
-  displayName: "Build iOS - Dev"
+# - script: cordova build ios --debug --emulator --verbose
+#   displayName: 'Build iOS Emulator'
+
+# - script: cordova build ios --buildConfig test-dev.json --device --debug --verbose
+#   displayName: "Build iOS - Dev"
 
 - script: ls -l
   displayName: 'lists build ios emu'
