@@ -65,17 +65,19 @@ steps:
 - script: cordova requirements
   displayName: 'Cordova Requirements'
 
+- task: Cache@2
+  inputs:
+    key: 'cocoapods-cache'
+    path: "../../../../../.cocoapods/repos/cocoapods"
+  displayName: 'Cache CocoaPods'
+
 # - script: cordova build android --device --debug --verbose
 #   displayName: 'Build Android - Dev'
 
 - script: cordova build ios --debug --emulator --verbose
   displayName: 'Build iOS Emulator'
 #/Users/runner/runners/2.165.1/work/1/s/Users/runner/.cocoapods/repos/cocoapods
-- task: Cache@2
-  inputs:
-    key: 'cocoapods-cache'
-    path: "../../../../../.cocoapods/repos/cocoapods"
-  displayName: 'Cache CocoaPods'
+
 
 # - script: cordova build ios --buildConfig test-dev.json --device --debug --verbose
 #   displayName: "Build iOS - Dev"
