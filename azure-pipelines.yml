@@ -70,11 +70,11 @@ steps:
 
 - script: cordova build ios --debug --emulator --verbose
   displayName: 'Build iOS Emulator'
-
+#/Users/runner/runners/2.165.1/work/1/s/Users/runner/.cocoapods/repos/cocoapods
 - task: Cache@2
   inputs:
     key: 'cocoapods-cache'
-    path: "Users/runner/.cocoapods/repos/cocoapods"
+    path: "../../../../../.cocoapods/repos/cocoapods"
   displayName: 'Cache CocoaPods'
 
 # - script: cordova build ios --buildConfig test-dev.json --device --debug --verbose
