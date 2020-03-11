@@ -77,15 +77,26 @@ steps:
 - script: pod repo list
   displayName: "after pod repo"
 
-- script: |
-    ls -l /Users/runner/.cocoapods/repos/cocoapods
-    zip -r "cocoapodrepo.zip" "/Users/runner/.cocoapods/repos/cocoapods"
-    cp "./cocoapodrepo.zip" $(Build.ArtifactStagingDirectory)/
-  displayName: "saverepo pod repo"
+# - script: |
+#     ls -l /Users/runner/.cocoapods/repos/cocoapods
+#     zip -r "cocoapodrepo.zip" "/Users/runner/.cocoapods/repos/cocoapods"
+#     cp "./cocoapodrepo.zip" $(Build.ArtifactStagingDirectory)/
+#   displayName: "saverepo pod repo"
 
 - script: ls -l
   displayName: 'lists build ios emu'
 
+- script: |
+    echo "$(System.DefaultWorkingDirectory)"
+    echo "$(Agent.WorkFolder)"
+  displayName: 'show me some paths'
+
+# - task: Cache@2
+#   inputs:
+#     key: 'cordova'
+#     path: 'test'
+#     cacheHitVar: 'true'
+#     restoreKeys: 'prefixes'
 
 - script: |
     SIMULATOR=$(find ./platforms/ios/build/emulator -name *.app)
