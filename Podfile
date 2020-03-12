@@ -4,6 +4,5 @@ source 'https://github.com/berbix/berbix-ios-spec.git'
 platform :ios, '11.0.0'
 
 target 'Test01' do
-	project 'Test01.xcodeproj'
 	pod 'Berbix', '1.0.2'
 end
