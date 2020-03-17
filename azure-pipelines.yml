@@ -17,13 +17,13 @@ steps:
 
 - task: InstallAppleCertificate@2
   inputs:
-    certSecureFile: 'test-dev.p12'
+    certSecureFile: 'CICD_Testing.cer'
     certPwd: '$(appleCert)'
     keychain: 'temp'
 - task: InstallAppleProvisioningProfile@1
   inputs:
     provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: 'test-dev.mobileprovision'
+    provProfileSecureFile: 'CICD_Testing.mobileprovision'
 
 - script: echo "{\"android\":{\"debug\":{\"keystore\":\"$(androidKeystore)\",\"storePassword\":\"$(androidKeystorePassword)\",\"alias\":\"$(androidAlias)\",\"password\":\"$(androidPassword)\",\"keystoreType\":\"$(androidKeystoreType)\"}},\"ios\":{\"debug\":{\"codeSignIdentity\":\"$(APPLE_CERTIFICATE_SIGNING_IDENTITY)\",\"packageType\":\"development\",\"provisioningProfile\":\"$(APPLE_PROV_PROFILE_UUID)\",\"automaticProvisioning\":false}}}" > test-dev.json
   displayName: "save json"
@@ -83,8 +83,8 @@ steps:
 #/Users/runner/runners/2.165.1/work/1/s/Users/runner/.cocoapods/repos/cocoapods
 
 
-# - script: cordova build ios --buildConfig test-dev.json --device --debug --verbose
-#   displayName: "Build iOS - Dev"
+- script: cordova build ios --buildConfig test-dev.json --device --debug --verbose
+  displayName: "Build iOS - Dev"
 
 - script: pod repo list
   displayName: "after pod repo"
