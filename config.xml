@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.sddev.LockScreenTest" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0"
+<widget id="com.sddev.cicd" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android" >
     <name>Test01</name>
     <description>
@@ -36,7 +36,7 @@
         <config-file parent="NSCameraUsageDescription" target="*-Info.plist">
             <string>To take photos of your identity documents for verification purposes.</string>
         </config-file>
-        <!-- <config-file parent="com.apple.developer.associated-domains" target="Entitlements-Release*.plist">
+        <config-file parent="com.apple.developer.associated-domains" target="Entitlements-Release*.plist">
             <array>
                 <string>applinks:app.sddev.ca</string>
             </array>
@@ -45,7 +45,7 @@
             <array>
                 <string>applinks:app.sddev.ca</string>
             </array>
-        </config-file> -->
+        </config-file>
         <preference name="Scheme" value="ionic" />
         <preference name="StatusBarDefaultScrollToTop" value="true" />
         <config-file target="*-Info.plist" parent="NSCameraUsageDescription">
