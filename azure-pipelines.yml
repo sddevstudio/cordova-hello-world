@@ -107,19 +107,30 @@ steps:
   displayName: 'show me some paths'
 
 - script: |
+    WORKSPACE=./
+    APK=$(find $WORKSPACE -name *.apk)
+    IPA=$(find $WORKSPACE -name *.ipa)
+    AAB=$(find $WORKSPACE -name *.aab)
+    APP=$(find $WORKSPACE -name *-simulator.zip)
     SIMULATOR=$(find ./platforms/ios/build/emulator -name *.app)
-    APP=simulator.zip
     zip -r "$APP" "$SIMULATOR"
     ls -lh
     ls -lh ./platforms/ios/build/emulator
-    cp "./$APP" $(Build.ArtifactStagingDirectory)/
+    echo "Copy APP:$APP to staging"
+    cp "./$APP" $(Build.ArtifactStagingDirectory)/ | true
+    echo "Copy IPA: $IPA to staging"
+    cp "./$IPA" $(Build.ArtifactStagingDirectory)/ | true
+    echo "Copy APK: $APK to staging"
+    cp "./$APK" $(Build.ArtifactStagingDirectory)/ | true
+    echo "Copy AAB: $AAB to staging"
+    cp "./$AAB" $(Build.ArtifactStagingDirectory)/ | true
   displayName: 'zip up app'
 
-- task: CopyFiles@2
-  inputs:
-    sourceFolder: '$(Build.SourcesDirectory)/platforms/ios/build'
-    contents: '/**.app*/*'
-    targetFolder: '$(Build.ArtifactStagingDirectory)'
+# - task: CopyFiles@2
+#   inputs:
+#     sourceFolder: '$(Build.SourcesDirectory)/platforms/ios/build'
+#     contents: '/**.app*/*'
+#     targetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - script: |
     pwd
