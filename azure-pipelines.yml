@@ -9,10 +9,24 @@ trigger:
 pool:
   vmImage: 'macOS-latest'
 
+parameters:
+- name: deployStores # name of the parameter; required
+  type: boolean # data type of the parameter; required
+  default: false
+- name: buildVersion
+  type: string
+  default: "s3 path"
+- name: comments
+  type: string
+  default: "weeeeeeee"
+
 steps:
 - script: |
     echo Hello, world!
     ls -l
+    echo ${{ parameters.deployStores }}
+    echo ${{ parameters.buildVersion }}
+    echo ${{ parameters.comments }}
   displayName: 'lets get started!'
 
 - task: InstallAppleCertificate@2
