@@ -24,9 +24,6 @@ steps:
 - script: |
     echo Hello, world!
     ls -l
-    # echo ${{ parameters.deployStores }}
-    # echo ${{ parameters.buildVersion }}
-    # echo ${{ parameters.comments }}
     echo "deployStores: $DEPLOYSTORES"
     echo "buildVersion: $BUILDVERSION"
     echo "comments: $COMMENTS"
