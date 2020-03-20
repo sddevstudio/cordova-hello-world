@@ -29,15 +29,20 @@ steps:
     echo ${{ parameters.comments }}
   displayName: 'lets get started!'
 
-- task: InstallAppleCertificate@2
-  inputs:
-    certSecureFile: 'CICD_Testing-2.p12'
-    certPwd: '$(appleCert)'
-    keychain: 'temp'
-- task: InstallAppleProvisioningProfile@1
-  inputs:
-    provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: 'CICD_Testing.mobileprovision'
+- script: |
+    echo exit
+    exit 1
+  displayName: 'exit'
+
+# - task: InstallAppleCertificate@2
+#   inputs:
+#     certSecureFile: 'CICD_Testing-2.p12'
+#     certPwd: '$(appleCert)'
+#     keychain: 'temp'
+# - task: InstallAppleProvisioningProfile@1
+#   inputs:
+#     provisioningProfileLocation: 'secureFiles'
+#     provProfileSecureFile: 'CICD_Testing.mobileprovision'
 
 - script: echo "{\"android\":{\"debug\":{\"keystore\":\"$(androidKeystore)\",\"storePassword\":\"$(androidKeystorePassword)\",\"alias\":\"$(androidAlias)\",\"password\":\"$(androidPassword)\",\"keystoreType\":\"$(androidKeystoreType)\"}},\"ios\":{\"debug\":{\"codeSignIdentity\":\"$(APPLE_CERTIFICATE_SIGNING_IDENTITY)\",\"packageType\":\"development\",\"provisioningProfile\":\"$(APPLE_PROV_PROFILE_UUID)\",\"automaticProvisioning\":false}}}" > test-dev.json
   displayName: "save json"
