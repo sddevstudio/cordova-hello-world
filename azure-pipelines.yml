@@ -29,10 +29,10 @@ steps:
     echo "comments: $COMMENTS"
   displayName: 'lets get started!'
 
-- script: |
-    echo exit
-    exit 1
-  displayName: 'exit'
+# - script: |
+#     echo exit
+#     exit 1
+#   displayName: 'exit'
 
 # - task: InstallAppleCertificate@2
 #   inputs:
@@ -94,16 +94,16 @@ steps:
     path: "../../../../../.cocoapods/repos/cocoapods"
   displayName: 'Cache CocoaPods'
 
-# - script: cordova build android --device --debug --verbose
-#   displayName: 'Build Android - Dev'
+- script: cordova build android --device --debug --verbose
+  displayName: 'Build Android - Dev'
 
-- script: cordova build ios --debug --emulator --verbose
-  displayName: 'Build iOS Emulator'
-#/Users/runner/runners/2.165.1/work/1/s/Users/runner/.cocoapods/repos/cocoapods
+# - script: cordova build ios --debug --emulator --verbose
+#   displayName: 'Build iOS Emulator'
+# #/Users/runner/runners/2.165.1/work/1/s/Users/runner/.cocoapods/repos/cocoapods
 
 
-- script: cordova build ios --buildConfig test-dev.json --device --debug --verbose
-  displayName: "Build iOS - Dev"
+# - script: cordova build ios --buildConfig test-dev.json --device --debug --verbose
+#   displayName: "Build iOS - Dev"
 
 - script: pod repo list
   displayName: "after pod repo"
