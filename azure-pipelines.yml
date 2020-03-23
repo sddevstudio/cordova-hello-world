@@ -91,11 +91,11 @@ steps:
 #   inputs:
 #     forceRepoUpdate: false
 
-- task: Cache@2
-  inputs:
-    key: 'cocoapods-cache'
-    path: "../../../../../.cocoapods/repos/cocoapods"
-  displayName: 'Cache CocoaPods'
+# - task: Cache@2
+#   inputs:
+#     key: 'cocoapods-cache'
+#     path: "../../../../../.cocoapods/repos/cocoapods"
+#   displayName: 'Cache CocoaPods'
 
 - script: cordova build android --device --debug --verbose
   displayName: 'Build Android - Dev'
