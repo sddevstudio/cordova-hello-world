@@ -75,6 +75,9 @@ steps:
 # - script: pod repo add cocoapods https://cdn.cocoapods.org/
 #   displayName: "add pod repo"
 
+- script: cordova platform add android
+  displayName: 'Cordova add android platform'
+
 - script: cordova prepare
   displayName: 'Cordova Prepare'
 
