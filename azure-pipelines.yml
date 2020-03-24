@@ -34,10 +34,10 @@ steps:
     secureFile: $(awsProfile)
 
 - script: |
-    mkdir -p ~/.aws
-    ls -l
     echo $(credentials.secureFilePath)
-    mv $(credentials.secureFilePath)$AWSPROFILE ~/.aws/credentials
+    sudo mkdir -p ~/.aws
+    ls -l $(credentials.secureFilePath)
+    sudo mv $(credentials.secureFilePath)$AWSPROFILE ~/.aws/credentials
     ls -l ~/.aws/
   displayName: 'prepare aws'
 
