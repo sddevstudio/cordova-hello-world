@@ -33,20 +33,27 @@ steps:
     secureFile: $(awsProfile)
 
 - script: |
-    python --version
-    curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-    unzip awscli-bundle.zip
-    sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
-    /usr/local/bin/aws --version
     mkdir -p ~/.aws
-    mv $AWSPROFILE ~/credentials
+    ls -l
+    mv $AWSPROFILE ~/.aws/credentials
     ls -l ~/.aws/
   displayName: 'prepare aws'
 
 # - script: |
-#     echo exit
-#     exit 1
-#   displayName: 'exit'
+#     python --version
+#     curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+#     unzip awscli-bundle.zip
+#     sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+#     /usr/local/bin/aws --version
+#     mkdir -p ~/.aws
+#     mv $AWSPROFILE ~/.aws/credentials
+#     ls -l ~/.aws/
+#   displayName: 'prepare aws'
+
+- script: |
+    echo exit
+    exit 1
+  displayName: 'exit'
 
 # - task: InstallAppleCertificate@2
 #   inputs:
