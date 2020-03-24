@@ -28,6 +28,20 @@ steps:
     echo "buildVersion: $BUILDVERSION"
     echo "comments: $COMMENTS"
   displayName: 'lets get started!'
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: $(awsProfile)
+
+- script: |
+    python --version
+    curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+    unzip awscli-bundle.zip
+    sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+    /usr/local/bin/aws --version
+    mkdir -p ~/.aws
+    mv $AWSPROFILE ~/credentials
+    ls -l ~/.aws/
+  displayName: 'prepare aws'
 
 # - script: |
 #     echo exit
