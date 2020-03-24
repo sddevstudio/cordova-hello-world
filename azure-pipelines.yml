@@ -29,13 +29,15 @@ steps:
     echo "comments: $COMMENTS"
   displayName: 'lets get started!'
 - task: DownloadSecureFile@1
+  name: credentials
   inputs:
     secureFile: $(awsProfile)
 
 - script: |
     mkdir -p ~/.aws
     ls -l
-    mv $AWSPROFILE ~/.aws/credentials
+    echo $(credentials.secureFilePath)
+    mv $(credentials.secureFilePath)$AWSPROFILE ~/.aws/credentials
     ls -l ~/.aws/
   displayName: 'prepare aws'
 
