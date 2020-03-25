@@ -53,13 +53,13 @@ steps:
 
 - task: InstallAppleCertificate@2
   inputs:
-    certSecureFile: 'CICD_Testing.p12'
+    certSecureFile: 'CICD_Testing-2.p12'
     certPwd: '$(appleCert)'
     keychain: 'temp'
 - task: InstallAppleCertificate@2
   inputs:
-    certSecureFile: 'CICD_Testing-2.p12'
-    certPwd: '$(appleCert)'
+    certSecureFile: 'test-dev.p12'
+    certPwd: '$(appleCert1)'
     keychain: 'temp'
 
 - task: InstallAppleProvisioningProfile@1
@@ -69,7 +69,7 @@ steps:
 - task: InstallAppleProvisioningProfile@1
   inputs:
     provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: 'CICD_Testing.mobileprovision'
+    provProfileSecureFile: 'test-dev.mobileprovision'
 
 - script: |
     echo exit
