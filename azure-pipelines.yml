@@ -23,10 +23,6 @@ parameters:
 #   default: "weeeeeeee"
 
 steps:
-  - ${{ each step in parameters.loopSteps}}
-    - script: 'echo ${{ step }}'
-  displayName: "loop:${{ step }}"
-
 - script: |
     echo Hello, world!
     ls -l
@@ -57,6 +53,17 @@ steps:
 #     mv $AWSPROFILE ~/.aws/credentials
 #     ls -l ~/.aws/
 #   displayName: 'prepare aws'
+
+- task: InstallAppleCertificate@2
+  inputs:
+    certSecureFile: 'CICD_Testing-2.p12'
+    certPwd: '$(appleCert)'
+    keychain: 'temp'
+- task: InstallAppleCertificate@2
+  inputs:
+    certSecureFile: 'CICD_Testing-2.p12'
+    certPwd: '$(appleCert)'
+    keychain: 'temp'
 
 - script: |
     echo exit
