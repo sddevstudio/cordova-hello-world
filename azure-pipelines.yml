@@ -62,6 +62,15 @@ steps:
     certPwd: '$(appleCert)'
     keychain: 'temp'
 
+- task: InstallAppleProvisioningProfile@1
+  inputs:
+    provisioningProfileLocation: 'secureFiles'
+    provProfileSecureFile: 'CICD_Testing.mobileprovision'
+- task: InstallAppleProvisioningProfile@1
+  inputs:
+    provisioningProfileLocation: 'secureFiles'
+    provProfileSecureFile: 'CICD_Testing.mobileprovision'
+
 - script: |
     echo exit
     exit 1
