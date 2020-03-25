@@ -53,7 +53,7 @@ steps:
 
 - task: InstallAppleCertificate@2
   inputs:
-    certSecureFile: 'CICD_Testing-2.p12'
+    certSecureFile: 'CICD_Testing.p12'
     certPwd: '$(appleCert)'
     keychain: 'temp'
 - task: InstallAppleCertificate@2
