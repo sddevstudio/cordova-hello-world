@@ -27,18 +27,18 @@ steps:
     echo "buildVersion: $BUILDVERSION"
     echo "comments: $COMMENTS"
   displayName: 'lets get started!'
-- task: DownloadSecureFile@1
-  name: credentials
-  inputs:
-    secureFile: $(awsProfile)
+# - task: DownloadSecureFile@1
+#   name: credentials
+#   inputs:
+#     secureFile: $(awsProfile)
 
-- script: |
-    echo $(credentials.secureFilePath)
-    sudo mkdir -p ~/.aws
-    ls -l $(credentials.secureFilePath)
-    sudo mv $(credentials.secureFilePath) ~/.aws/credentials
-    ls -l ~/.aws/
-  displayName: 'prepare aws'
+# - script: |
+#     echo $(credentials.secureFilePath)
+#     sudo mkdir -p ~/.aws
+#     ls -l $(credentials.secureFilePath)
+#     sudo mv $(credentials.secureFilePath) ~/.aws/credentials
+#     ls -l ~/.aws/
+#   displayName: 'prepare aws'
 
 # - script: |
 #     python --version
