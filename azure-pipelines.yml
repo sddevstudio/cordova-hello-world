@@ -146,6 +146,19 @@ steps:
 #   displayName: 'Build iOS Emulator'
 # #/Users/runner/runners/2.165.1/work/1/s/Users/runner/.cocoapods/repos/cocoapods
 
+# - script: |
+#     echo "list keychains"
+#     security -v list-keychains
+#     echo "default keychain"
+#     security default-keychain
+#     echo "add cert" 
+#     # security add-certificates -k /Users/runner/runners/2.165.2/work/_temp/ios_signing_temp.keychain $(iosDistributionCert.secureFilePath)
+#     echo "dump keychain - temp"
+#     security dump-keychain /Users/runner/runners/2.165.2/work/_temp/ios_signing_temp.keychain
+#     echo "dump keychain - login"
+#     security dump-keychain ~/Library/Keychains/login.keychain
+#     exit 1
+#   displayName: "Display Cert Info"
 
 # - script: cordova build ios --buildConfig test-dev.json --device --debug --verbose
 #   displayName: "Build iOS - Dev"
