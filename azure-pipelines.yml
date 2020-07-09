@@ -21,204 +21,206 @@ pool:
 
 steps:
 - script: |
-    echo Hello, world!
     ls -l
     echo "deployStores: $DEPLOYSTORES"
     echo "buildVersion: $BUILDVERSION"
     echo "comments: $COMMENTS"
+    date
+    find /System -iname ".cocoapods" -print 2>/dev/null 
+    date
   displayName: 'lets get started!'
-# - task: DownloadSecureFile@1
-#   name: credentials
-#   inputs:
-#     secureFile: $(awsProfile)
+# # - task: DownloadSecureFile@1
+# #   name: credentials
+# #   inputs:
+# #     secureFile: $(awsProfile)
 
-# - script: |
-#     echo $(credentials.secureFilePath)
-#     sudo mkdir -p ~/.aws
-#     ls -l $(credentials.secureFilePath)
-#     sudo mv $(credentials.secureFilePath) ~/.aws/credentials
-#     ls -l ~/.aws/
-#   displayName: 'prepare aws'
+# # - script: |
+# #     echo $(credentials.secureFilePath)
+# #     sudo mkdir -p ~/.aws
+# #     ls -l $(credentials.secureFilePath)
+# #     sudo mv $(credentials.secureFilePath) ~/.aws/credentials
+# #     ls -l ~/.aws/
+# #   displayName: 'prepare aws'
 
-# - script: |
-#     python --version
-#     curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-#     unzip awscli-bundle.zip
-#     sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
-#     /usr/local/bin/aws --version
-#     mkdir -p ~/.aws
-#     mv $AWSPROFILE ~/.aws/credentials
-#     ls -l ~/.aws/
-#   displayName: 'prepare aws'
-
-- task: InstallAppleCertificate@2
-  inputs:
-    certSecureFile: 'CICD_Testing-2.p12'
-    certPwd: '$(appleCert)'
-    keychain: 'temp'
-- task: InstallAppleCertificate@2
-  inputs:
-    certSecureFile: 'test-dev.p12'
-    certPwd: '$(appleCert)'
-    keychain: 'temp'
-
-- task: InstallAppleProvisioningProfile@1
-  inputs:
-    provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: 'CICD_Testing.mobileprovision'
-- task: InstallAppleProvisioningProfile@1
-  inputs:
-    provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: 'test-dev.mobileprovision'
-
-- script: |
-    echo exit
-    exit 1
-  displayName: 'exit'
+# # - script: |
+# #     python --version
+# #     curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+# #     unzip awscli-bundle.zip
+# #     sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+# #     /usr/local/bin/aws --version
+# #     mkdir -p ~/.aws
+# #     mv $AWSPROFILE ~/.aws/credentials
+# #     ls -l ~/.aws/
+# #   displayName: 'prepare aws'
 
 # - task: InstallAppleCertificate@2
 #   inputs:
 #     certSecureFile: 'CICD_Testing-2.p12'
 #     certPwd: '$(appleCert)'
 #     keychain: 'temp'
+# - task: InstallAppleCertificate@2
+#   inputs:
+#     certSecureFile: 'test-dev.p12'
+#     certPwd: '$(appleCert)'
+#     keychain: 'temp'
+
 # - task: InstallAppleProvisioningProfile@1
 #   inputs:
 #     provisioningProfileLocation: 'secureFiles'
 #     provProfileSecureFile: 'CICD_Testing.mobileprovision'
-
-- script: echo "{\"android\":{\"debug\":{\"keystore\":\"$(androidKeystore)\",\"storePassword\":\"$(androidKeystorePassword)\",\"alias\":\"$(androidAlias)\",\"password\":\"$(androidPassword)\",\"keystoreType\":\"$(androidKeystoreType)\"}},\"ios\":{\"debug\":{\"codeSignIdentity\":\"$(APPLE_CERTIFICATE_SIGNING_IDENTITY)\",\"packageType\":\"development\",\"provisioningProfile\":\"$(APPLE_PROV_PROFILE_UUID)\",\"automaticProvisioning\":false}}}" > test-dev.json
-  displayName: "save json"
-
-# - task: Xcode@5
+# - task: InstallAppleProvisioningProfile@1
 #   inputs:
-#     signingOption: 'manual'
-#     signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
-#     provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
-
-
-- script: |
-    echo try install cordova...
-    npm install -g cordova
-    cordova --version
-  displayName: 'Cordova Install'
-
-- script: npm install -g ios-deploy
-  displayName: 'ios-deploy'
-
-- script: |
-    gem which cocoapods
-    gem install cocoapods
-    gem which cocoapods
-  displayName: 'CocoaPods install'
-
-- script: pod repo list
-  displayName: "before pod repo"
-
-# - script: pod repo add cocoapods https://cdn.cocoapods.org/
-#   displayName: "add pod repo"
-
-- script: cordova platform add android
-  displayName: 'Cordova add android platform'
-
-- script: cordova prepare
-  displayName: 'Cordova Prepare'
-
-- script: ls -l
-  displayName: 'lists after prepare'
-
-- script: cordova requirements
-  displayName: 'Cordova Requirements'
-
-# - task: CocoaPods@0
-#   inputs:
-#     forceRepoUpdate: false
-
-# - task: Cache@2
-#   inputs:
-#     key: 'cocoapods-cache'
-#     path: "../../../../../.cocoapods/repos/cocoapods"
-#   displayName: 'Cache CocoaPods'
-
-- script: cordova build android --device --debug --verbose
-  displayName: 'Build Android - Dev'
-
-# - script: cordova build ios --debug --emulator --verbose
-#   displayName: 'Build iOS Emulator'
-# #/Users/runner/runners/2.165.1/work/1/s/Users/runner/.cocoapods/repos/cocoapods
+#     provisioningProfileLocation: 'secureFiles'
+#     provProfileSecureFile: 'test-dev.mobileprovision'
 
 # - script: |
-#     echo "list keychains"
-#     security -v list-keychains
-#     echo "default keychain"
-#     security default-keychain
-#     echo "add cert" 
-#     # security add-certificates -k /Users/runner/runners/2.165.2/work/_temp/ios_signing_temp.keychain $(iosDistributionCert.secureFilePath)
-#     echo "dump keychain - temp"
-#     security dump-keychain /Users/runner/runners/2.165.2/work/_temp/ios_signing_temp.keychain
-#     echo "dump keychain - login"
-#     security dump-keychain ~/Library/Keychains/login.keychain
+#     echo exit
 #     exit 1
-#   displayName: "Display Cert Info"
+#   displayName: 'exit'
 
-# - script: cordova build ios --buildConfig test-dev.json --device --debug --verbose
-#   displayName: "Build iOS - Dev"
+# # - task: InstallAppleCertificate@2
+# #   inputs:
+# #     certSecureFile: 'CICD_Testing-2.p12'
+# #     certPwd: '$(appleCert)'
+# #     keychain: 'temp'
+# # - task: InstallAppleProvisioningProfile@1
+# #   inputs:
+# #     provisioningProfileLocation: 'secureFiles'
+# #     provProfileSecureFile: 'CICD_Testing.mobileprovision'
 
-- script: pod repo list
-  displayName: "after pod repo"
+# - script: echo "{\"android\":{\"debug\":{\"keystore\":\"$(androidKeystore)\",\"storePassword\":\"$(androidKeystorePassword)\",\"alias\":\"$(androidAlias)\",\"password\":\"$(androidPassword)\",\"keystoreType\":\"$(androidKeystoreType)\"}},\"ios\":{\"debug\":{\"codeSignIdentity\":\"$(APPLE_CERTIFICATE_SIGNING_IDENTITY)\",\"packageType\":\"development\",\"provisioningProfile\":\"$(APPLE_PROV_PROFILE_UUID)\",\"automaticProvisioning\":false}}}" > test-dev.json
+#   displayName: "save json"
+
+# # - task: Xcode@5
+# #   inputs:
+# #     signingOption: 'manual'
+# #     signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
+# #     provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
+
 
 # - script: |
-#     ls -l /Users/runner/.cocoapods/repos/cocoapods
-#     zip -r "cocoapodrepo.zip" "/Users/runner/.cocoapods/repos/cocoapods"
-#     cp "./cocoapodrepo.zip" $(Build.ArtifactStagingDirectory)/
-#   displayName: "saverepo pod repo"
+#     echo try install cordova...
+#     npm install -g cordova
+#     cordova --version
+#   displayName: 'Cordova Install'
 
-- script: ls -l
-  displayName: 'lists build ios emu'
+# - script: npm install -g ios-deploy
+#   displayName: 'ios-deploy'
 
-# $(System.DefaultWorkingDirectory) /Users/runner/runners/2.165.1/work/1/s
-# $(Agent.WorkFolder) /Users/runner/runners/2.165.1/work
+# - script: |
+#     gem which cocoapods
+#     gem install cocoapods
+#     gem which cocoapods
+#   displayName: 'CocoaPods install'
 
-- script: |
-    echo "$(System.DefaultWorkingDirectory)"
-    echo "$(Agent.WorkFolder)"
-  displayName: 'show me some paths'
+# - script: pod repo list
+#   displayName: "before pod repo"
 
-- script: |
-    WORKSPACE=./
-    APK=$(find $WORKSPACE -name *.apk)
-    IPA=$(find $WORKSPACE -name *.ipa)
-    AAB=$(find $WORKSPACE -name *.aab)
-    APP=$(find $WORKSPACE -name *-simulator.zip)
-    SIMULATOR=$(find ./platforms/ios/build/emulator -name *.app)
-    zip -r "$APP" "$SIMULATOR"
-    ls -lh
-    ls -lh ./platforms/ios/build/emulator
-    echo "Copy APP:$APP to staging"
-    cp "./$APP" $(Build.ArtifactStagingDirectory)/ | true
-    echo "Copy IPA: $IPA to staging"
-    cp "./$IPA" $(Build.ArtifactStagingDirectory)/ | true
-    echo "Copy APK: $APK to staging"
-    cp "./$APK" $(Build.ArtifactStagingDirectory)/ | true
-    echo "Copy AAB: $AAB to staging"
-    cp "./$AAB" $(Build.ArtifactStagingDirectory)/ | true
-  displayName: 'zip up app'
+# # - script: pod repo add cocoapods https://cdn.cocoapods.org/
+# #   displayName: "add pod repo"
 
-# - task: CopyFiles@2
+# - script: cordova platform add android
+#   displayName: 'Cordova add android platform'
+
+# - script: cordova prepare
+#   displayName: 'Cordova Prepare'
+
+# - script: ls -l
+#   displayName: 'lists after prepare'
+
+# - script: cordova requirements
+#   displayName: 'Cordova Requirements'
+
+# # - task: CocoaPods@0
+# #   inputs:
+# #     forceRepoUpdate: false
+
+# # - task: Cache@2
+# #   inputs:
+# #     key: 'cocoapods-cache'
+# #     path: "../../../../../.cocoapods/repos/cocoapods"
+# #   displayName: 'Cache CocoaPods'
+
+# - script: cordova build android --device --debug --verbose
+#   displayName: 'Build Android - Dev'
+
+# # - script: cordova build ios --debug --emulator --verbose
+# #   displayName: 'Build iOS Emulator'
+# # #/Users/runner/runners/2.165.1/work/1/s/Users/runner/.cocoapods/repos/cocoapods
+
+# # - script: |
+# #     echo "list keychains"
+# #     security -v list-keychains
+# #     echo "default keychain"
+# #     security default-keychain
+# #     echo "add cert" 
+# #     # security add-certificates -k /Users/runner/runners/2.165.2/work/_temp/ios_signing_temp.keychain $(iosDistributionCert.secureFilePath)
+# #     echo "dump keychain - temp"
+# #     security dump-keychain /Users/runner/runners/2.165.2/work/_temp/ios_signing_temp.keychain
+# #     echo "dump keychain - login"
+# #     security dump-keychain ~/Library/Keychains/login.keychain
+# #     exit 1
+# #   displayName: "Display Cert Info"
+
+# # - script: cordova build ios --buildConfig test-dev.json --device --debug --verbose
+# #   displayName: "Build iOS - Dev"
+
+# - script: pod repo list
+#   displayName: "after pod repo"
+
+# # - script: |
+# #     ls -l /Users/runner/.cocoapods/repos/cocoapods
+# #     zip -r "cocoapodrepo.zip" "/Users/runner/.cocoapods/repos/cocoapods"
+# #     cp "./cocoapodrepo.zip" $(Build.ArtifactStagingDirectory)/
+# #   displayName: "saverepo pod repo"
+
+# - script: ls -l
+#   displayName: 'lists build ios emu'
+
+# # $(System.DefaultWorkingDirectory) /Users/runner/runners/2.165.1/work/1/s
+# # $(Agent.WorkFolder) /Users/runner/runners/2.165.1/work
+
+# - script: |
+#     echo "$(System.DefaultWorkingDirectory)"
+#     echo "$(Agent.WorkFolder)"
+#   displayName: 'show me some paths'
+
+# - script: |
+#     WORKSPACE=./
+#     APK=$(find $WORKSPACE -name *.apk)
+#     IPA=$(find $WORKSPACE -name *.ipa)
+#     AAB=$(find $WORKSPACE -name *.aab)
+#     APP=$(find $WORKSPACE -name *-simulator.zip)
+#     SIMULATOR=$(find ./platforms/ios/build/emulator -name *.app)
+#     zip -r "$APP" "$SIMULATOR"
+#     ls -lh
+#     ls -lh ./platforms/ios/build/emulator
+#     echo "Copy APP:$APP to staging"
+#     cp "./$APP" $(Build.ArtifactStagingDirectory)/ | true
+#     echo "Copy IPA: $IPA to staging"
+#     cp "./$IPA" $(Build.ArtifactStagingDirectory)/ | true
+#     echo "Copy APK: $APK to staging"
+#     cp "./$APK" $(Build.ArtifactStagingDirectory)/ | true
+#     echo "Copy AAB: $AAB to staging"
+#     cp "./$AAB" $(Build.ArtifactStagingDirectory)/ | true
+#   displayName: 'zip up app'
+
+# # - task: CopyFiles@2
+# #   inputs:
+# #     sourceFolder: '$(Build.SourcesDirectory)/platforms/ios/build'
+# #     contents: '/**.app*/*'
+# #     targetFolder: '$(Build.ArtifactStagingDirectory)'
+
+# - script: |
+#     pwd
+#     echo $(Build.ArtifactStagingDirectory)
+#     echo $(Build.SourcesDirectory)
+#     ls -lh platforms/ios/build/emulator
+#     ls -lh '$(Build.ArtifactStagingDirectory)'
+#   displayName: 'wheres da files'
+
+# - task: PublishBuildArtifacts@1
 #   inputs:
-#     sourceFolder: '$(Build.SourcesDirectory)/platforms/ios/build'
-#     contents: '/**.app*/*'
-#     targetFolder: '$(Build.ArtifactStagingDirectory)'
-
-- script: |
-    pwd
-    echo $(Build.ArtifactStagingDirectory)
-    echo $(Build.SourcesDirectory)
-    ls -lh platforms/ios/build/emulator
-    ls -lh '$(Build.ArtifactStagingDirectory)'
-  displayName: 'wheres da files'
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+#     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+#     ArtifactName: 'drop'
+#     publishLocation: 'Container'
