@@ -21,21 +21,18 @@ pool:
 
 steps:
 - script: |
-    ls -l
-    echo "deployStores: $DEPLOYSTORES"
-    echo "buildVersion: $BUILDVERSION"
-    echo "comments: $COMMENTS"
     date
     pwd
+    ls -la
     cd ..
     pwd
-    ls -l
+    ls -la
     cd ..
     pwd
-    ls -l
+    ls -la
     cd ..
     pwd
-    ls -l
+    ls -la
     date
   displayName: 'lets get started!'
 # # - task: DownloadSecureFile@1
