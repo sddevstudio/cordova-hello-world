@@ -22,6 +22,7 @@ pool:
 steps:
 - script: |
     date
+    gem which cocoapods
     pwd
     ls -la
     ls -la ../../../../../
