@@ -26,7 +26,7 @@ steps:
     echo "buildVersion: $BUILDVERSION"
     echo "comments: $COMMENTS"
     date
-    find /System -iname ".cocoapods" -print 2>/dev/null 
+    pwd
     date
   displayName: 'lets get started!'
 # # - task: DownloadSecureFile@1
