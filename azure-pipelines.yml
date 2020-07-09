@@ -27,7 +27,15 @@ steps:
     echo "comments: $COMMENTS"
     date
     pwd
-    find ../../../ -iname ".cocoapods" -print 
+    cd ..
+    pwd
+    ls -l
+    cd ..
+    pwd
+    ls -l
+    cd ..
+    pwd
+    ls -l
     date
   displayName: 'lets get started!'
 # # - task: DownloadSecureFile@1
